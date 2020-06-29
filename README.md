@@ -11,7 +11,7 @@ Okta administrator privileges
 
 <div class="tasklist">
 
-##### Get the API token and issuer URI from Okta
+#### Get the API token and domain from Okta
 
 In the Okta developer console,
 navigate to **API > Tokens**.
@@ -48,7 +48,7 @@ tenants_credentials:
       okta_domain: <<OKTA-DOMAIN>>
 ```
 
-For multiple tenants, add your okta API and URI for each tenant as the following example:
+For multiple tenants, add your okta API and domain for each tenant as the following example:
 ```
 tenants_credentials:
     - okta_api_key: 123456a
@@ -82,7 +82,7 @@ docker run \
 -t logzio/logzio-okta
 ```
 
-##### Parameters
+#### Parameters
 
 | Parameter | Description |
 |---|---|
@@ -90,7 +90,7 @@ docker run \
 | LOGZIO_LISTENER_HOST <span class="required-param"></span> | Logz.io [listener URL](https://docs.logz.io/user-guide/accounts/account-region.html) to ship the logs to (for example, listener.logz.io). |
 
 
-##### Check Logz.io for your logs
+#### Check Logz.io for your logs
 
 Give your logs some time to get from your system to ours,
 and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
