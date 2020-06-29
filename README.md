@@ -20,14 +20,12 @@ Create a token and paste it in your text editor.
 ![Create Okta API token](https://dytvr9ot2sszz.cloudfront.net/logz-docs/log-shipping/okta-create-token.png)
 
 Click the **Authorization Servers** tab.
-Copy your Okta subdomain from the **Issuer URI** column,
-and paste it in your text editor.
+Copy your Okta domain from the **Issuer URI** column,
+and paste it in your text editor. In the following example, you'd have copied "dev-123456.okta.com".
 
 ![Okta URL](https://dytvr9ot2sszz.cloudfront.net/logz-docs/log-shipping/okta-issuer-uri.png)
 
-In the example above, you'd have copied "dev-123456".
-
-##### Pull the Docker image
+#### Pull the Docker image
 
 Download the logzio/logzio-okta image.
 
@@ -35,19 +33,52 @@ Download the logzio/logzio-okta image.
 docker pull logzio/logzio-okta
 ```
 
-##### Run the Docker image
+#### Run the Docker image
 
-For a complete list of options, see the parameters below the code block.👇
+Build your tenants-credentials.yml:
+
+``` 
+touch tenants-credentials.yml
+```
+
+Insert your tenants credentials in the following format:
+```
+tenants_credentials:
+    - okta_api_key: <<OKTA-API-KEY>
+      okta_domain: <<OKTA-DOMAIN>>
+```
+
+For multiple tenants, add your okta API and URI for each tenant as the following example:
+```
+tenants_credentials:
+    - okta_api_key: 123456a
+      okta_domain: logzio-dev-123.okta.com
+    - okta_api_key: 123456b
+      okta_domain: logzio-dev-123.okta.com
+    - okta_api_key: 123456c
+      okta_domain: logzio-dev-123.oktapreview.com
+```
+** Note that 'YAML' files are sensitive to spaces and tabs, then keep this structure accurate.
+
+
+#### Parameters
+For every tenant replace the parameters by:  
+
+| Parameter | Description |
+|---|---|
+| OKTA_API_KEY <span class="required-param"></span> | The Okta API key you copied in step 1. |
+| OKTA_DOMAIN <span class="required-param"></span> | Insert your Okta domain that you copied in step 1 from the issuer URI column. For example: logzio-dev-123.okta.com, logzio-dev-123.oktapreview.com|
+
+Save the file on your working directory (where you're running the docker from) and run:
 
 ```shell
 docker run \
 --detach \
 --restart always \
 --name Okta \
---env LOGZIO_TOKEN=<<SHIPPING-TOKEN>> \
+--env MULTI_TENANTS=<<SHIPPING-TOKEN>> \
 --env LOGZIO_LISTENER_HOST=<<LISTENER-HOST>> \
---env OKTA_API_KEY=<<OKTA-API-KEY>> \
---env OKTA_TENANT=<<OKTA-ISSUER-URI>> \
+-v $(pwd)/tenants-credentials.yml:/usr/share/logstash/tenants-credentials.yml \
 -t logzio/logzio-okta
 ```
 
@@ -57,8 +88,6 @@ docker run \
 |---|---|
 | LOGZIO_TOKEN <span class="required-param"></span> | Your Logz.io account [token]((https://app.logz.io/#/dashboard/settings/general)). |
 | LOGZIO_LISTENER_HOST <span class="required-param"></span> | Logz.io [listener URL](https://docs.logz.io/user-guide/accounts/account-region.html) to ship the logs to (for example, listener.logz.io). |
-| OKTA_API_KEY <span class="required-param"></span> | The Okta API key you copied in step 1. |
-| OKTA_DOMAIN <span class="required-param"></span> | Insert your Okta domain in the following format <ISSUER-URI>.<YOUR-DOMAIN> - replace issuer URI with your URI you copied in step 1, and the domain for your own usage: oktapreview.com, okta.com, okta-emea.com. example: logzio.okta.com.|
 
 
 ##### Check Logz.io for your logs
@@ -66,4 +95,15 @@ docker run \
 Give your logs some time to get from your system to ours,
 and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
+
+## Versions
+
+0.1.0:
+* Sending logs from multiple Okta tenants
+* Sending logs with from every kind of okta domain (not limited to 'okta.com')
+
+0.0.2:
+* Sending logs from Okta tenants
+
 </div>
+
