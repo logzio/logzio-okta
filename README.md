@@ -11,7 +11,7 @@ Okta administrator privileges
 
 <div class="tasklist">
 
-##### Get the API token and issuer URI from Okta
+##### Get the API token and Okta domain from Okta
 
 In the Okta developer console,
 navigate to **API > Tokens**.
@@ -73,10 +73,9 @@ Save the file on your working directory (where you're running the docker from) a
 
 ```shell
 docker run \
---detach \
 --restart always \
 --name Okta \
---env MULTI_TENANTS=<<SHIPPING-TOKEN>> \
+--env LOGZIO_TOKEN=<<SHIPPING-TOKEN>> \
 --env LOGZIO_LISTENER_HOST=<<LISTENER-HOST>> \
 -v $(pwd)/tenants-credentials.yml:/usr/share/logstash/tenants-credentials.yml \
 -t logzio/logzio-okta
@@ -101,6 +100,7 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 0.1.0:
 * Sending logs from multiple Okta tenants
 * Sending logs with from every kind of okta domain (not limited to 'okta.com')
+* Note that 'okta_api_key' and 'okta_domain' are now being set in 'tenants-credentials.yml' and no longer as environment parameters.
 
 0.0.2:
 * Sending logs from Okta tenants
