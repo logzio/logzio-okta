@@ -41,7 +41,7 @@ def _add_tenant(tenant, line):
         okta_domain = tenant["okta_domain"]
         if not okta_domain.endswith(VALID_DOMAINS):
             raise Exception("Your Okta domain in line %d is invalid.\n %s" % (line, error_msg))
-        tenant_dict = "input {\n okta_system_log {\n schedule => {every => '30s'}\n limit => 1000\n auth_token_key => '%s'\n hostname =>  '%s'\n }\n }\n" % (okta_api_key, okta_domain)
+        tenant_dict = "input {\n okta_system_log {\n schedule => {every => '30s'}\n limit => 1000\n auth_token_key => '%s'\n hostname =>  '%s'\nadd_field => {\n 'tenant_name' => '%s'} }\n}\n" % (okta_api_key, okta_domain, okta_domain)
         return tenant_dict
     except Exception as e:
         raise Exception("The tenant in line %d is missing an Okta domain.\n %s" % (line, error_msg))

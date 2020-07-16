@@ -2,7 +2,8 @@
 
 To ship Okta logs,
 you'll deploy a Docker container
-to collect the logs and forward them to Logz.io.
+to collect the logs and forward them to Logz.io using Logstash.
+You can send logs from multiple Okta tenants and any okta domain.
 
 #### Configuration
 
@@ -11,7 +12,7 @@ Okta administrator privileges
 
 <div class="tasklist">
 
-##### Get the API token and Okta domain from Okta
+#### Get the API token and Okta domain from Okta
 
 In the Okta developer console,
 navigate to **API > Tokens**.
@@ -25,30 +26,21 @@ and paste it in your text editor. In the following example, you'd have copied "d
 
 ![Okta URL](https://dytvr9ot2sszz.cloudfront.net/logz-docs/log-shipping/okta-issuer-uri.png)
 
-#### Pull the Docker image
-
-Download the logzio/logzio-okta image.
-
-```shell
-docker pull logzio/logzio-okta
-```
-
-#### Run the Docker image
-
-Build your tenants-credentials.yml:
+#### Build your tenants-credentials.yml:
 
 ``` 
 touch tenants-credentials.yml
 ```
 
-Insert your tenants credentials in the following format:
+#### Insert your tenants credentials in the following format:
 ```
 tenants_credentials:
     - okta_api_key: <<OKTA-API-KEY>
       okta_domain: <<OKTA-DOMAIN>>
 ```
 
-This shipper supports up to 50 tenants. For multiple tenants, add your Okta API key and domain for each tenant. See the following example:
+This shipper supports up to 50 tenants. For multiple tenants, add your Okta API key and domain for each tenant.  
+See the following example:
 ```
 tenants_credentials:
     - okta_api_key: 123456a
@@ -69,7 +61,21 @@ For every tenant replace the parameters by:
 | OKTA_API_KEY <span class="required-param"></span> | The Okta API key you copied in step 1. |
 | OKTA_DOMAIN <span class="required-param"></span> | Insert your Okta domain that you copied in step 1 from the issuer URI column. Supports these [Okta domains](https://developer.okta.com/docs/guides/find-your-domain/findorg/): example.oktapreview.com, example.okta.com, example.okta-emea.com |
 
-Save the file on your working directory (where you're running the docker from) and run:
+To filter by tenants the logs have the field 'tenant_name'.  
+
+Save the file on your working directory (where you're running the docker from).
+
+#### Pull the Docker image
+
+Download the logzio/logzio-okta image.
+
+```shell
+docker pull logzio/logzio-okta
+```
+
+#### Run the Docker image
+
+Replace the placeholders in the code sample below before running it. Then run:
 
 ```shell
 docker run \
@@ -94,8 +100,10 @@ docker run \
 Give your logs some time to get from your system to ours,
 and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
-
 ## Versions
+
+0.1.1:
+* Added 'tenant_name' field to the logs
 
 0.1.0:
 * Sending logs from multiple Okta tenants
