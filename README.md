@@ -29,7 +29,7 @@ and paste it in your text editor. In the following example, you'd have copied "d
 #### Build your tenants-credentials.yml:
 
 ``` 
-mkdir ~/logzio-okta && cd ~/logzio-okta && touch tenants-credentials.yml && open tenants-credentials.yml
+mkdir ~/logzio-okta && touch ~/logzio-okta/tenants-credentials.yml && open ~/logzio-okta/tenants-credentials.yml
 ```
 
 #### Insert your tenants credentials in the following format:
