@@ -27,9 +27,9 @@ and paste it in your text editor. In the following example, you'd have copied "d
 ![Okta URL](https://dytvr9ot2sszz.cloudfront.net/logz-docs/log-shipping/okta-issuer-uri.png)
 
 #### Build your tenants-credentials.yml:
-
+Please run this command as root:
 ``` 
-mkdir ~/logzio-okta && touch ~/logzio-okta/tenants-credentials.yml && open ~/logzio-okta/tenants-credentials.yml
+mkdir /etc/logzio-okta && touch /etc/logzio-okta/tenants-credentials.yml && open /etc/logzio-okta/tenants-credentials.yml
 ```
 
 #### Insert your tenants credentials in the following format:
@@ -83,9 +83,12 @@ docker run \
 --name Okta \
 --env LOGZIO_TOKEN=<<SHIPPING-TOKEN>> \
 --env LOGZIO_LISTENER_HOST=<<LISTENER-HOST>> \
--v ~/logzio-okta/tenants-credentials.yml:/usr/share/logstash/tenants-credentials.yml \
+-v /etc/logzio-okta/tenants-credentials.yml:/usr/share/logstash/tenants-credentials.yml \
 -t logzio/logzio-okta
 ```
+For Mac users: To fix issues with mounting files from root directory please add the path ‘/etc/logzio-okta’ to your Docker File Sharing.
+Click [here](https://medium.com/effy-tech/fixing-the-var-folders-error-in-docker-for-mac-v2-2-3-2a40e776132d) for a guide on how to fix this issue - using docker desktop or manually edit your Docker configuration file.
+For more information about mounting files from root directory click [here](https://docs.docker.com/docker-for-mac/osxfs/#namespaces).
 
 ##### Parameters
 
