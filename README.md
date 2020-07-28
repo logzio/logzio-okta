@@ -26,12 +26,12 @@ and paste it in your text editor. In the following example, you'd have copied "d
 
 ![Okta URL](https://dytvr9ot2sszz.cloudfront.net/logz-docs/log-shipping/okta-issuer-uri.png)
 
-#### Build your tenants-credentials.yml:
+#### Build your tenants-credentials.yml
 To create the file run the following command as root and then open the file in your text editor:
+
 ``` 
 mkdir /etc/logzio-okta && touch /etc/logzio-okta/tenants-credentials.yml
 ```
-
 
 #### Insert your tenants credentials in the following format:
 ```
