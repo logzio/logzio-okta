@@ -110,7 +110,7 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
 ## Versions
 
-0.1.2:
+0.2.0:
 
 - Changed logstash.conf routing
 - Updated version logstash version to `docker.elastic.co/logstash/logstash:7.16.1`
