@@ -110,26 +110,17 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
 ## Versions
 
-0.2.0:
-
-- Changed logstash.conf routing.
-- Upgraded Logstash version 7.16.1.
-- Changed yaml handler from `ruamel.yaml` to `pyyaml`.
-- Added ARM support.
-- Upgraded image to use python3.
-
-  0.1.1:
-
-- Added 'tenant_name' field to the logs
-
-  0.1.0:
-
-- Sending logs from multiple Okta tenants
-- Sending logs with from every kind of okta domain (not limited to 'okta.com')
-- Note that 'okta_api_key' and 'okta_domain' are now being set in 'tenants-credentials.yml' and no longer as environment parameters.
-
-  0.0.2:
-
-- Sending logs from Okta tenants
-
-</div>
+- 0.2.0:
+    - Changed logstash.conf routing.
+    - Upgraded Logstash version 7.16.1.
+    - Changed yaml handler from `ruamel.yaml` to `pyyaml`.
+    - Added ARM support.
+    - Upgraded image to use python3.
+- 0.1.1:
+    - Added 'tenant_name' field to the logs
+- 0.1.0:
+    - Sending logs from multiple Okta tenants
+    - Sending logs with from every kind of okta domain (not limited to 'okta.com')
+    - Note that 'okta_api_key' and 'okta_domain' are now being set in 'tenants-credentials.yml' and no longer as environment parameters.
+- 0.0.2:
+    - Sending logs from Okta tenants
