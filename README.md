@@ -112,10 +112,11 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
 0.2.0:
 
-- Changed logstash.conf routing
-- Updated version logstash version to `docker.elastic.co/logstash/logstash:7.16.1`
-- Changed yaml handler from `ruamel.yaml` to `pyyaml`
-- Implemented `pyyaml` to the integration
+- Changed logstash.conf routing.
+- Upgraded Logstash version 7.16.1.
+- Changed yaml handler from `ruamel.yaml` to `pyyaml`.
+- Added ARM support.
+- Upgraded image to use python3.
 
   0.1.1:
 
