@@ -111,7 +111,7 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 ## Versions
 
 - 0.3.0:
-    -Upgrade Logstash to 7.17.1 (logstash bug fix). 
+    - Upgrade Logstash to 7.17.1 (logstash bug fix). 
 - 0.2.0:
     - Changed logstash.conf routing.
     - Upgraded Logstash version 7.16.1.
