@@ -99,9 +99,10 @@ For more information about mounting files from root directory click [here](https
 ##### Parameters
 
 | Parameter                                                 | Description                                                                                                                               |
-| --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | LOGZIO_TOKEN <span class="required-param"></span>         | Your Logz.io account [token](<(https://app.logz.io/#/dashboard/settings/general)>).                                                       |
 | LOGZIO_LISTENER_HOST <span class="required-param"></span> | Logz.io [listener URL](https://docs.logz.io/user-guide/accounts/account-region.html) to ship the logs to (for example, listener.logz.io). |
+| LOG_LEVEL (Optional)                                      | Logstash Log Level (deafult: `info`)                                                                                                      |
 
 ##### Check Logz.io for your logs
 

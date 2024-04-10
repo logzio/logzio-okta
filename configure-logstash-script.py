@@ -5,7 +5,7 @@ LOGSTASH_CONF_PATH = "./pipeline/logstash.conf"
 MAX_TENANTS = 50
 VALID_DOMAINS = ('okta.com', 'oktapreview.com', 'okta-emea.com')
 VALID_LOG_LEVELS = ("info", "debug", "warn", "error", "fatal", "trace")
-LOG_LEVEL = environ["LOGZIO_LISTENER_HOST"] if environ.get("LOGZIO_LISTENER_HOST") and environ.get("LOGZIO_LISTENER_HOST") in VALID_LOG_LEVELS else "info"
+LOG_LEVEL = environ["LOG_LEVEL"] if environ.get("LOG_LEVEL") and environ.get("LOG_LEVEL") in VALID_LOG_LEVELS else "info"
 error_msg = "Please run 'docker stop <<your-container name>> && docker rm <<your-container name>>' and rerun the container with a valid tenants-credentials.yml file."
 
 
