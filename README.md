@@ -110,6 +110,8 @@ and then open [Kibana](https://app.logz.io/#/dashboard/kibana).
 
 ## Versions
 
+-   0.5.0:
+    -   Upgrade Logstash to 7.17.20 (logstash bug fix).
 -   0.4.0:
     -   Upgrade Logstash connection via port 5006 add certicifate for conenction
 -   0.3.0:
