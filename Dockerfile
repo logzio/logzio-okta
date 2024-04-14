@@ -1,4 +1,4 @@
-FROM docker.elastic.co/logstash/logstash:7.17.1
+FROM docker.elastic.co/logstash/logstash:7.17.20
 WORKDIR /usr/share/logstash/
 ENV XPACK_MONITORING_ENABLED false
 USER root

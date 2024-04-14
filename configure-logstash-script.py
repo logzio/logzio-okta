@@ -1,8 +1,11 @@
+from os import environ
 import yaml
 import subprocess
 LOGSTASH_CONF_PATH = "./pipeline/logstash.conf"
 MAX_TENANTS = 50
 VALID_DOMAINS = ('okta.com', 'oktapreview.com', 'okta-emea.com')
+VALID_LOG_LEVELS = ("info", "debug", "warn", "error", "fatal", "trace")
+LOG_LEVEL = environ["LOG_LEVEL"] if environ.get("LOG_LEVEL") and environ.get("LOG_LEVEL") in VALID_LOG_LEVELS else "info"
 error_msg = "Please run 'docker stop <<your-container name>> && docker rm <<your-container name>>' and rerun the container with a valid tenants-credentials.yml file."
 
 
@@ -55,6 +58,6 @@ def _add_tenant(tenant, line):
 
 _build_logstash_config()
 cmd_plguin_install = "bin/logstash-plugin install logstash-input-okta_system_log"
-cmd_logstash_run = "logstash -f /usr/share/logstash/pipeline/logstash.conf"
+cmd_logstash_run = f"logstash --log.level {LOG_LEVEL} -f /usr/share/logstash/pipeline/logstash.conf"
 subprocess.call(cmd_plguin_install.split(" "))
 subprocess.call(cmd_logstash_run.split(" "))
